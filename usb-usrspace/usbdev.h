@@ -48,5 +48,5 @@
  * The name of the device file 
  */
 
- #define DEVICE_FILE_NAME "usb_dev"
+ #define DEVICE_FILE_NAME "skel0"
  #endif
