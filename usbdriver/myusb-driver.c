@@ -1,5 +1,9 @@
-#include <linux/module.h>
 #include <linux/kernel.h>
+#include <linux/errno.h>
+#include <linux/slab.h>
+#include <linux/module.h>
+#include <linux/kref.h>
+#include <linux/uaccess.h>
 #include <linux/usb.h>
 
 #define MIN(a,b) (((a) <= (b)) ? (a) : (b))
