@@ -180,7 +180,7 @@ static int myusb_probe(struct usb_interface *interface, const struct usb_device_
         // printk(KERN_INFO "Minor obtained: %d\n", interface->minor);
         /* let the user know what node this device is now attached to */
         dev_info(&interface->dev,
-                 "USB myusb device now attached to USBMyusb-%d",
+                 "USB myusb device now attached to USBMyusb-%d\n",
                  interface->minor);
     }
 
@@ -208,7 +208,7 @@ static int __init myusb_init(void)
     /* Register this driver with the USB subsystem */
     if ((result = usb_register(&myusb_driver)))
     {
-        err("usb_register failed. Error number %d", result);
+        printk("usb_register failed. Error number %d\n", result);
     }
     return result;
 }
