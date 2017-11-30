@@ -63,7 +63,7 @@ static void set_bulk_address (struct usb_myusb *dev, struct usb_interface *inter
                 dev->bulk_in_size = endpoint->wMaxPacketSize;
                 dev->bulk_in_buffer = kmalloc(dev->bulk_in_size, GFP_KERNEL);
                 if (!dev->bulk_in_buffer)
-                    print("Could not allocate bulk buffer");
+                    printk("Could not allocate bulk buffer\n");
             }
 
             /* bulk out */
@@ -87,7 +87,7 @@ static ssize_t myusb_read(struct file *f, char __user *buf, size_t cnt, loff_t *
     struct usb_myusb *dev;
     int retval;
     int read_cnt;
-    dev = file->private_data;
+    dev = f->private_data;
     /* Read the data from the bulk endpoint */
     retval = usb_bulk_msg(dev->udev, usb_rcvbulkpipe(dev->udev, dev->bulk_in_add),
                           bulk_buf, MAX_PKT_SIZE, &read_cnt, TIMEOUT);
@@ -113,7 +113,7 @@ static ssize_t myusb_write(struct file *f, const char __user *buf, size_t cnt, l
     {
         return -EFAULT;
     }
-    dev = file->private_data;
+    dev = f->private_data;
     /* Write the data into the bulk endpoint */
     retval = usb_bulk_msg(dev->udev, usb_sndbulkpipe(dev->udev, dev->bulk_out_add),
                           bulk_buf, MIN(cnt, MAX_PKT_SIZE), &wrote_cnt, TIMEOUT);
