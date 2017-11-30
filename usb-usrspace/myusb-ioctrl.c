@@ -1,9 +1,7 @@
 
 /*
- *  ioctl.c - the process to use ioctl's to control the kernel module
+ *  myusb-ioctl.c - the process to use ioctl's to control the usb driver kernel module
  *
- *  Until now we could have used cat for input and output.  But now
- *  we need to do ioctl's, which require writing our own process.
  */
 
 /* 
