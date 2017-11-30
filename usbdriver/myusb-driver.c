@@ -13,7 +13,10 @@
 
 #define MY_USB_VENDOR_ID  0x03DB
 #define MY_USB_PRODUCT_ID 0x430C
+
 #define TIMEOUT 5000
+/* Get a minor range for your devices from the usb maintainer */
+#define USB_SKEL_MINOR_BASE 192
 
 // static struct usb_device *device;
 // static struct usb_class_driver class;
@@ -170,7 +173,7 @@ static int myusb_probe(struct usb_interface *interface, const struct usb_device_
     if ((retval = usb_register_dev(interface, &myusb_class)) < 0)
     {
         /* Something prevented us from registering this driver */
-        err("Not able to get a minor for this device.");
+        printk("Not able to get a minor for this device.\n");
     }
     else
     {
